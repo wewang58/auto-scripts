@@ -44,6 +44,9 @@ for (( i=0; i<${#IMAGE[@]} ; i++))   ; do
        echo "push release $NAME successfully"
     fi
     rm -f push.log
+#delete built image
+    IMAGE_ID=`echo $(docker images |grep virt-openshift-05.lab.eng.nay.redhat.com:5001/aep-release/$NAME)|cut -d' ' -f3`
+    docker rmi -f $IMAGE_ID
 #source to image, push to registry, base rcm
     s2i build $SOURCE  rcm-img-docker01.build.eng.bos.redhat.com:5001/$REG  $NAME
     docker tag -f $NAME virt-openshift-05.lab.eng.nay.redhat.com:5001/aep-upgrade/$NAME
@@ -56,4 +59,7 @@ for (( i=0; i<${#IMAGE[@]} ; i++))   ; do
        echo "push upgrade $NAME successfully"
     fi
     rm -f push.log
+#delete built image
+    IMAGE_ID=`echo $(docker images |grep virt-openshift-05.lab.eng.nay.redhat.com:5001/aep-upgrade/$NAME)|cut -d' ' -f3`
+    docker rmi -f $IMAGE_ID
 done
