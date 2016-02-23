@@ -48,7 +48,7 @@ for (( i=0; i<${#IMAGE[@]} ; i++))   ; do
     IMAGE_ID=`echo $(docker images |grep virt-openshift-05.lab.eng.nay.redhat.com:5001/aep-release/$NAME)|cut -d' ' -f3`
     docker rmi -f $IMAGE_ID
 #source to image, push to registry, base rcm
-    s2i build $SOURCE  rcm-img-docker01.build.eng.bos.redhat.com:5001/$REG  $NAME
+    s2i build $SOURCE  brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/$REG  $NAME
     docker tag -f $NAME virt-openshift-05.lab.eng.nay.redhat.com:5001/aep-upgrade/$NAME
     docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/aep-upgrade/$NAME |tee -a push.log
 #check push successful
