@@ -37,7 +37,7 @@ for (( i=0; i<${#IMAGE[@]} ; i++)) ; do
 #check image ID
   if [ "$RIMAGE_ID" != "$UIMAGE_ID" ];then
       docker tag -f registry.access.redhat.com/$NAME:latest virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest
-      docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest
+      docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest |tee -a push.log
 #check push successful
       DIFF=`cat push.log |grep sha256 |cut -d ':' -f1,2,3`
         if [ "$DIFF" != "latest: digest: sha256" ];then 
@@ -48,7 +48,7 @@ for (( i=0; i<${#IMAGE[@]} ; i++)) ; do
         rm -f push.log
 
       docker tag -f brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/$NAME:latest virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-upgrade/$NAME:latest
-      docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-upgrade/$NAME:latest
+      docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-upgrade/$NAME:latest |tee -a push.log
 #check push successful
       DIFF=`cat push.log |grep sha256 |cut -d ':' -f1,2,3`
         if [ "$DIFF" != "latest: digest: sha256" ];then
@@ -58,9 +58,9 @@ for (( i=0; i<${#IMAGE[@]} ; i++)) ; do
         fi 
         rm -f push.log
 
-#delete release images
-     docker rmi -f $RIMAGE_ID
   else
     echo "$NAME images ID are the same"
   fi
+#delete release images
+  docker rmi -f $RIMAGE_ID
 done
