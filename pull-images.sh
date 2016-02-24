@@ -36,7 +36,7 @@ for (( i=0; i<${#IMAGE[@]} ; i++)) ; do
   UIMAGE_ID=`echo $(docker images |grep brew-pulp-docker01.web.prod.ext.phx2.redhat.com:8888/$REG)|cut -d' ' -f3`
 
 #check image ID
-  if [ "$RIMAGE_ID" != "$UIMAGE_ID" ];then
+   if [ "$RIMAGE_ID" != "$UIMAGE_ID" ];then
       echo "$NAME image updated, need testing"
       docker tag -f registry.access.redhat.com/$REG:latest virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest
       docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest |tee -a push.log
@@ -59,10 +59,11 @@ for (( i=0; i<${#IMAGE[@]} ; i++)) ; do
            echo "push upgrade $NAME successfully"
         fi 
         rm -f push.log
-
-  else
-    echo "$NAME images ID are the same"
-  fi
 #delete release images
-  docker rmi -f $RIMAGE_ID
+      docker rmi -f $RIMAGE_ID       
+
+   else
+      echo "$NAME images ID are the same"
+   fi
+
 done
