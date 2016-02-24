@@ -36,6 +36,7 @@ for (( i=0; i<${#IMAGE[@]} ; i++)) ; do
 
 #check image ID
   if [ "$RIMAGE_ID" != "$UIMAGE_ID" ];then
+      echo "$NAME image updated, need testing"
       docker tag -f registry.access.redhat.com/$NAME:latest virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest
       docker push virt-openshift-05.lab.eng.nay.redhat.com:5001/ose-release/$NAME:latest |tee -a push.log
 #check push successful
