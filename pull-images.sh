@@ -20,7 +20,7 @@ MYSQL55=(mysql-55-rhel7 openshift3/mysql-55-rhel7)
 MYSQL56=(mysql-56-rhel7 rhscl/mysql-56-rhel7)
 MONGO24=(mongodb-24-rhel7 openshift3/mongodb-24-rhel7)
 MONGO26=(mongodb-26-rhel7 rhscl/mongodb-26-rhel7)
-POST92=(postgresql-92-rhel7 penshift3/postgresql-92-rhel7)
+POST92=(postgresql-92-rhel7 openshift3/postgresql-92-rhel7)
 POST94=(postgresql-94-rhel7 rhscl/postgresql-94-rhel7)
 
 IMAGE=(RUBY20 RUBY22 NODEJS PERL516 PERL520 PYTHON27 PYTHON33 PYTHON34 PHP55 PHP56 JENKINS MYSQL55 MYSQL56 MONGO24 MONGO26 POST92 POST94)
