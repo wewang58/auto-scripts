@@ -15,7 +15,7 @@ TOMCAT7=(webserver30-tomcat7-openshift-aep 'https://github.com/bparees/openshift
 TOMCAT8=(webserver30-tomcat8-openshift-aep 'https://github.com/bparees/openshift-jee-sample' jboss-webserver-3/webserver30-tomcat8-openshift)
 IMAGE=(RUBY20 RUBY22 NODEJS PERL516 PERL520 PYTHON27 PYTHON33 PYTHON34 PHP55 PHP56 TOMCAT7 TOMCAT8)
 
-wget -O s2i.tar.gz https://github.com/openshift/source-to-image/releases/download/v1.0.4/source-to-image-v1.0.4-00785d6-linux-amd64.tar.gz
+wget -O s2i.tar.gz https://github.com/openshift/source-to-image/releases/download/v1.0.6/source-to-image-v1.0.6-79dfe89-linux-amd64.tar.gz
 mkdir s2i
 tar -zxvf s2i.tar.gz -C s2i
 export PATH=$PATH:`pwd`/s2i
